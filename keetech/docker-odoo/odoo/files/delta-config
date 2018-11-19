@@ -1,0 +1,19 @@
+[options]
+addons_path=/opt/odoo/addons/,/opt/odoo/odoo/addons/,/opt/odoo/odoo-brasil/,/opt/odoo/trustcode-addons/,/opt/odoo/server-tools/,/opt/odoo/contract/,/opt/odoo/project/,/opt/odoo/backend_theme/,/opt/odoo/web/
+admin_passwd = senha_admin
+auto_reload = False
+csv_internal_sep = ,
+data_dir = /opt/dados
+db_host = localhost
+db_maxconn = 200
+db_name = False
+db_password= odoo
+db_port = False
+db_template = template0
+db_user = odoo
+;dbfilter = ^%d$
+logfile =/var/log/odoo/odoo.log
+xmlrpc_port = 8069
+proxy_mode = True
+unaccent=True
+max_cron_threads = 1

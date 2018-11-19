@@ -1,0 +1,75 @@
+<odoo>
+    <template id="radar" name="Radar - Documentos Fiscais Eletrônicos">
+      <t t-call="portal.portal_layout">
+        <h3>Radar - DF-e
+            <t t-call="portal.portal_searchbar"/>
+        </h3>
+        <div class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table table-hover o_portal_my_doc_table">
+                    <thead>
+                      <tr class="active">
+                          <th>#NSU</th>
+                          <th>Emitente</th>
+                          <th>Data</th>
+                          <th>Tipo</th>
+                          <th>Estado</th>
+                          <th>Valor</th>
+                      </tr>
+                    </thead>
+                    <t t-foreach="dfe" t-as="d">
+                        <tr>
+                            <td>
+                                <t t-esc="d.nsu"/>
+                                <!-- <a t-attf-href="/web/content?model=br_dfe.br_dfe_query_nsu&amp;field=xml&amp;filename_field=xml_name&amp;id={{ d.id }}">Download XML</a> -->
+                                <!-- <a t-attf-href="/web/content/sped.dfe.query.nsu/{{ d.id }}/xml/{{ d.xml_name }}&amp;download=true">Download XML</a> -->
+                                <!-- <a t-attf-href="/web/content?model=sped.dfe.query.nsu&amp;field=xml&amp;filename_field=xml_name&amp;id={{ d.id }}&amp;download=true">Download</a>-->
+                                <a t-attf-href="/web/content?model=sped.dfe.query.nsu&amp;field=xml&amp;filename_field=xml_name&amp;id={{ d.id }}&amp;download=true" title="Download XML">
+                                    <i class="fa fa-file-text-o"/>
+                                </a>
+                            </td>
+                            <td>
+                                <t t-esc="d.partner_id.name"/>
+                            </td>
+                            <td>
+                                <t t-esc="d.data_evento" t-options="{'widget': 'date'}"/>
+                            </td>
+                            <td>
+                                <t t-if="d.nsu_type">
+                                    <t t-esc="dict(d.fields_get(allfields=['nsu_type'])['nsu_type']['selection'])[d.nsu_type]"/>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="d.nfe_state == '1'">
+                                    <span class="label label-success hidden-xs"><i class="fa fa-fw fa-check"></i>
+                                        <span class="hidden-xs">
+                                            <t t-esc="dict(d.fields_get(allfields=['nfe_state'])['nfe_state']['selection'])[d.nfe_state]"/>
+                                        </span>
+                                    </span>
+                                </t>
+                                <t t-if="d.nfe_state == '2'">
+                                    <span class="label label-info"><i class="fa fa-fw fa-clock-o"></i>
+                                        <span class="hidden-xs">
+                                            <t t-esc="dict(d.fields_get(allfields=['nfe_state'])['nfe_state']['selection'])[d.nfe_state]"/>
+                                        </span>
+                                    </span>
+                                </t>
+                                <t t-if="d.nfe_state == '3'">
+                                    <span class="label label-danger"><i class="fa fa-fw fa-warning"></i>
+                                        <span class="hidden-xs">
+                                            <t t-esc="dict(d.fields_get(allfields=['nfe_state'])['nfe_state']['selection'])[d.nfe_state]"/>
+                                        </span>
+                                    </span>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-esc="d.valor_nfe" t-options='{"widget": "monetary", "display_currency": d.currency_id}'/>
+                            </td>
+                        </tr>
+                    </t>
+                </table>
+            </div>
+        </div>
+      </t>
+    </template>
+</odoo>

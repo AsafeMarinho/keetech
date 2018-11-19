@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_br_boleto_account_payment_mode_form" model="ir.ui.view">
+        <field name="name">view.br.boleto.payment.mode.form</field>
+        <field name="model">payment.mode</field>
+        <field name="inherit_id" ref="br_account_payment.account_payment_mode_form" />
+        <field name="arch" type="xml">
+            <field name="active">
+                <field name="boleto" />
+            </field>
+            <xpath expr="//field[@name='bank_account_id']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('payment_method','not in',['99'])]}
+                </attribute>
+            </xpath>
+            <group name="main" position="after">
+                <group name="boletos" string="Boletos" attrs="{'invisible': [('payment_method','!=','99')]}">
+                  <field name="boleto_type" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="nosso_numero_sequence" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_carteira" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_modalidade" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_variacao" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_cnab_code" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_aceite" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_especie" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_protesto" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="boleto_protesto_prazo" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="late_payment_fee" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="late_payment_interest" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                  <field name="instrucoes" attrs="{'invisible': [('payment_method','!=','99')]}"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

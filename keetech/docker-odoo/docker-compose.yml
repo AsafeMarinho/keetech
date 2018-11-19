@@ -1,0 +1,37 @@
+db:
+  image: raphael0608/postgresql:v1.0b
+  container_name: db
+#  volumes:
+#    - ./data/db/etc/:/etc/postgresql/
+#    - ./data/db/log/:/var/log/postgresql/
+#    - ./data/db/lib/:/var/lib/postgresql/
+  environment:
+    - POSTGRES_PASS=delta05
+    - POSTGRES_NEWUSER=odoo
+    - NEWUSER_PASS=0d00
+  ports:
+    - '5432:5432'
+
+app:
+  container_name: app
+  build: ./odoo
+  environment:
+    - PG_HOST=db
+    - PG_PORT=5432
+    - PG_USER=odoo
+    - PG_PASSWORD=0d00
+    - PORT=8069
+    - ODOO_VERSION 11.0
+    - APP_VERSION 1
+    - APP_RELEASE 1.0
+    - BITBUCKET_USER raphael0608
+    - BITBUCKET_PASS fenixUPS
+  expose:
+    - "8069"
+    - "465"
+    - "25"
+    - "587"
+  ports:
+    - '8069:8069'
+  links:
+    - db

@@ -1,0 +1,20 @@
+CREATE CLIENT:
+
+./create_openvpn_client.sh CLIENT_NAME
+
+and copy CLIENT_NAME.conf to client PC
+
+
+HOW TO INSTALL:
+
+groupadd nogroup
+yum install openvpn
+cp /tmp/voip_elastix.conf /etc/openvpn/
+Add to conf : keepalive 10 60
+
+chkconfig openvpn on
+service openvpn restart
+
+Centos 7:
+systemctl -f enable openvpn@server.service
+systemctl start openvpn@server.service

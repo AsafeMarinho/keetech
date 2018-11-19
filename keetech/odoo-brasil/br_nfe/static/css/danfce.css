@@ -1,0 +1,73 @@
+body {
+    font-family: Times New Roman;
+    font-size: 8pt;
+    background: #FFF none repeat scroll 0 0;
+    margin: 8px;
+}
+h5, p {
+    margin: 0pt;
+}
+table {
+    border-bottom: 1px dashed #000;
+}
+table.items {
+    font-size: 8pt;
+    border-collapse: collapse;
+    border: 3px solid #880000;
+}
+td, th {
+    font-size: 7pt;
+    vertical-align: top;
+    text-align: center;
+}
+th {
+    font-weight: bold;
+}
+table thead td, table tfoot td {
+    font-size: 7pt;
+    vertical-align: center;
+    text-align: center;
+}
+table thead td {
+    font-weight: bold;
+}
+hr {
+    border-top: medium none;
+    border-left: medium none;
+    border-right: medium none;
+    border-bottom: 1px dotted #ccc;
+    color: #ccc;
+    margin: 0;
+}
+.noBorder {
+    border: medium none !important;
+}
+.barcode {
+    padding: 1.5mm;
+    margin: 0;
+    vertical-align: top;
+    color: #000000;
+}
+.barcodecell {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+}
+.menor {
+    font-size: 6.5pt;
+}
+.contingencia {
+    font-size: 9pt;
+}
+.rodape {
+    font-size: 5.5pt;
+}
+.tLeft {
+    text-align: left;
+}
+.tCenter {
+    text-align: center;
+}
+.tRight {
+    text-align: right;
+}

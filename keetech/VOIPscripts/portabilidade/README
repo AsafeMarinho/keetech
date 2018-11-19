@@ -1,0 +1,71 @@
+CONFIGURE MYSQL PORTABILIDADE:
+
+- Install packages
+
+yum -y install mysql
+yum -y install httpd
+yum -y install httpd-tools
+yum -y install wget
+
+- Create the folder
+
+mkdir /var/srv/
+
+- Add information to the folder
+
+cp /var/git/portabilidade/* /var/srv/
+
+- Configure the passwords
+
+vim /var/srv/download_portabilidade.sh
+vim /var/srv/portabilidade.conf
+vim /var/srv/portado.sh
+
+- Copy the portabilidade file to asterisk
+
+cp /var/srv/portabilidade.conf /etc/asterisk
+chmod 755 /etc/asterisk/portabilidade.conf
+
+- Add the crontab calls
+
+00 1    * * *   root    /var/srv/download_portabilidade.sh
+00 4    * * 0   root    /sbin/shutdown -r +5
+
+- Edit extensions
+
+vim /etc/asterisk/extensions.conf
+At the beginning of file add: 
+	#include portabilidade.conf 
+
+Then at the context [from-internal] add: 
+	include => portabilidade
+
+- Prepare the outbound routes:
+
+Salida vivo
+Prepend 015
+Prefix 55315, 55320, 55323, 55215, 55115
+X.
+
+Salida OI
+Prepend 031
+Prefix 55314, 55331, 55335, 55131
+
+Salida tim
+Prepend 041
+Prefix 55341, 55141
+
+Salida claro
+Prepend 021
+Prefix 55321
+
+- Run the scripts:
+
+/var/srv/portado.sh
+mysql -p < gsm-bk.sql
+/var/srv/download_portabilidade.sh
+
+Check if the IP is 186.249.1.158:62221
+
+
+

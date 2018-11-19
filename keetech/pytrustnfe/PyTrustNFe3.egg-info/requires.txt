@@ -1,0 +1,9 @@
+Jinja2 >= 2.8
+lxml >= 3.5.0, < 5
+pyOpenSSL >= 16.0.0, < 18
+pytz
+reportlab
+signxml >= 2.4.0
+suds-jurko >= 0.6
+suds-jurko-requests >= 1.2
+zeep

@@ -1,0 +1,21 @@
+INSTALL LAST CALLER SCRIPT
+
+yum install perl-DBI
+yum install perl-DBD-MySQL
+yum install asterisk-perl
+yum install perl-CPAN
+cpan Asterisk::AGI
+
+Copy MySQL passwd from: /etc/asterisk/cdr_mysql.conf
+
+Configure last_caller script using the MySQL passwd:
+cd /var/lib/asterisk/agi-bin
+vim last_caller_cdr.pl
+
+chown asterisk:asterisk last_caller_cdr.pl
+chmod 755 last_caller_cdr.pl
+
+modify /etc/asterisk/extensions_custom.conf to add the extra contexts
+
+check if permissions and location of the script is ok executing a:
+ls -alh /var/lib/asterisk/agi-bin/last_caller_cdr.pl
